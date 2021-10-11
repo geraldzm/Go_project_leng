@@ -1,11 +1,11 @@
 package funciones
 
 type Tree struct {
-	root *Nodo
+	Root *Nodo
 }
 
 type Nodo struct {
-	value      int
-	leftChild  *Nodo
-	rightChild *Nodo
+	Value      int
+	LeftChild  *Nodo
+	RightChild *Nodo
 }

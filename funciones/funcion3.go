@@ -1,6 +1,6 @@
 package funciones
 
-func Insert(key int, arry *[]int) int {
+func Funcion3(key int, arry *[]int) int {
 
 	comparations := 1
 

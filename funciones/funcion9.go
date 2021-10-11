@@ -4,55 +4,55 @@ func InsertNode(val int, n *Nodo) int {
 
 	comparations := 0
 
-	if n.value < val {
+	if n.Value < val {
 
 		comparations += 2
-		if n.rightChild == nil {
-			n.rightChild = &Nodo{value: val, leftChild: nil, rightChild: nil}
+		if n.RightChild == nil {
+			n.RightChild = &Nodo{Value: val, LeftChild: nil, RightChild: nil}
 			return comparations
 		}
 
-		return comparations + InsertNode(val, n.rightChild)
-	} else if n.value > val {
+		return comparations + InsertNode(val, n.RightChild)
+	} else if n.Value > val {
 
 		comparations += 3
-		if n.leftChild == nil {
-			n.leftChild = &Nodo{value: val, leftChild: nil, rightChild: nil}
+		if n.LeftChild == nil {
+			n.LeftChild = &Nodo{Value: val, LeftChild: nil, RightChild: nil}
 			return comparations
 		}
 
-		return comparations + InsertNode(val, n.leftChild)
+		return comparations + InsertNode(val, n.LeftChild)
 	}
 
 	return 2
 }
 
-func (t *Tree) InsertInTree(val int) int {
+func (t *Tree) Funcion9(val int) int {
 
-	if t.root == nil {
-		t.root = &Nodo{value: val, leftChild: nil, rightChild: nil}
+	if t.Root == nil {
+		t.Root = &Nodo{Value: val, LeftChild: nil, RightChild: nil}
 		return 1
 	}
 
-	return 1 + InsertNode(val, t.root)
+	return 1 + InsertNode(val, t.Root)
 }
 
 // func main() {
-// 	t := Tree{root: nil}
+// 	t := Tree{Root: nil}
 
 // 	x := t.InsertInTree(4)
-// 	fmt.Println(*t.root, x)
+// 	fmt.Println(*t.Root, x)
 
 // 	x = t.InsertInTree(2)
 
-// 	fmt.Println(*t.root.leftChild, x)
+// 	fmt.Println(*t.Root.LeftChild, x)
 
 // 	x = t.InsertInTree(2)
 
-// 	fmt.Println(*t.root.leftChild, x)
+// 	fmt.Println(*t.Root.LeftChild, x)
 
 // 	x = t.InsertInTree(5)
 
-// 	fmt.Println(*t.root.rightChild, x)
+// 	fmt.Println(*t.Root.RightChild, x)
 
 // }

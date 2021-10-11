@@ -1,15 +1,15 @@
 package funciones
 
 func Funcion10(num int, tree Tree) (bool, int) {
-	node := tree.root
+	node := tree.Root
 	counter := 1
 
 	for node != nil {
 
-		if node.value > num {
-			node = node.leftChild
-		} else if node.value < num {
-			node = node.rightChild
+		if node.Value > num {
+			node = node.LeftChild
+		} else if node.Value < num {
+			node = node.RightChild
 		} else {
 			counter += 2
 			return true, counter

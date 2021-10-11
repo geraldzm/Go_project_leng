@@ -5,21 +5,51 @@ import (
 )
 
 func main() {
-	// fmt.Println("Hello world")
+	//Experimentos
 
-	// arr := funciones.Funcion1(250, 19)
-	// fmt.Println(arr)
+	n := []int{200} // 400, 600, 800, 1000
 
-	// funciones.Funcion2(arr)
+	for i := 0; i < 1; i++ {
 
-	funciones.Funcion2([]int{1, 2, 2, 3, 4})
+		ran := n[i]
 
-	// var size = 7
-	// arr := []int{2, 4, 3, 1, 6, 8, 5}
-	// fmt.Println(funciones.Funcion4(arr, size))
+		//experimento a
+		A := funciones.Funcion1(ran)
 
-	// arr := []int{2, 4, 5, 6, 7, 8, 9, 10, 12, 14, 18}
-	// res1, res2 := funciones.Funcion7(19, arr)
-	// fmt.Println("Encontrado: ", res1)
-	// fmt.Println("Cantidad de comparaciones: ", res2)
+		//experimento b
+		Distr := make([]int, 54)
+
+		for j := 0; j < ran; j++ {
+			Distr[A[j]] = Distr[A[j]] + 1
+		}
+
+		//experimento c
+		TS := make([]int, 0)
+		StatTS := make([]int, ran)
+
+		for index, val := range A {
+			StatTS[index] = funciones.Funcion3(val, &TS)
+		}
+
+		//experimento d
+		TOS := make([]int, ran)
+		copy(TOS, A)
+		TOS = funciones.Funcion4(TOS, ran)
+
+		//experimento e
+		TOQ := make([]int, ran)
+		copy(TOQ, A)
+		funciones.Funcion5(&TOQ)
+
+		//experimento f
+		Abb := funciones.Tree{Root: nil}
+		StatAbb := make([]int, ran)
+		for index, val := range A {
+			StatAbb[index] = Abb.Funcion9(val)
+		}
+
+		//experimento g
+
+	}
+
 }
