@@ -1,5 +1,9 @@
 package main
 
+import (
+	"proyecto/funciones"
+)
+
 func main() {
 	// fmt.Println("Hello world")
 
@@ -8,7 +12,7 @@ func main() {
 
 	// funciones.Funcion2(arr)
 
-	// funciones.Funcion2([]int{1, 2, 2, 3, 4})
+	funciones.Funcion2([]int{1, 2, 2, 3, 4})
 
 	// var size = 7
 	// arr := []int{2, 4, 3, 1, 6, 8, 5}

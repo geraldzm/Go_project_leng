@@ -1,21 +1,15 @@
 package funciones
 
-type TreeNode struct {
-	val   int
-	left  *TreeNode
-	right *TreeNode
-}
-
-func Funcion10(num int, root *TreeNode) (bool, int) {
-	node := root
+func Funcion10(num int, tree Tree) (bool, int) {
+	node := tree.root
 	counter := 0
 
 	for node != nil {
 		counter++
-		if node.val > num {
-			node = node.left
-		} else if node.val < num {
-			node = node.right
+		if node.value > num {
+			node = node.leftChild
+		} else if node.value < num {
+			node = node.rightChild
 		} else {
 			return true, counter
 		}

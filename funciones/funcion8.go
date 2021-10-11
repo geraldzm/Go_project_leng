@@ -8,6 +8,6 @@ type Tree struct {
 
 type Nodo struct {
 	value      int
-	leftChild  int
-	rightChild int
+	leftChild  *Nodo
+	rightChild *Nodo
 }
