@@ -75,11 +75,11 @@ func main() {
 		}
 
 		//experimento j
-		alturaAbb := funciones.HeightOf(Abb.Root)
-		alturaAbbDSW := funciones.HeightOf(AbbDSW.Root)
+		// alturaAbb := funciones.HeightOf(Abb.Root)
+		// alturaAbbDSW := funciones.HeightOf(AbbDSW.Root)
 
-		densidadAbb := alturaAbb / Abb.Size()
-		densidadAbbDSW := alturaAbb / AbbDSW.Size()
+		// densidadAbb := alturaAbb / Abb.Size()
+		// densidadAbbDSW := alturaAbbDSW / AbbDSW.Size()
 
 		//Arreglos con total de comparaciones realizadas en las inserciones
 		//StatTS
