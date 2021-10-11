@@ -37,6 +37,20 @@ func (t *Tree) Funcion9(val int) int {
 	return 1 + InsertNode(val, t.Root)
 }
 
+func Max(x int, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
+
+func HeightOf(root *Nodo) int {
+	if root == nil {
+		return -1
+	}
+	return 1 + Max(HeightOf(root.LeftChild), HeightOf(root.RightChild))
+}
+
 // func main() {
 // 	t := Tree{Root: nil}
 
