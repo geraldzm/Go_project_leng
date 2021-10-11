@@ -1,15 +1,10 @@
 package main
 
-import (
-	"fmt"
-	"proyecto/funciones"
-)
-
 func main() {
 	// fmt.Println("Hello world")
 
-	arr := funciones.Funcion1(250, 19)
-	fmt.Println(arr)
+	// arr := funciones.Funcion1(250, 19)
+	// fmt.Println(arr)
 
 	// funciones.Funcion2(arr)
 
