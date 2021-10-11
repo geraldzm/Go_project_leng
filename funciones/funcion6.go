@@ -1,6 +1,6 @@
 package funciones
 
-func SearchKey(key int, arry *[]int) (bool, int) {
+func Funcion6(key int, arry *[]int) (bool, int) {
 
 	comparations := 1
 

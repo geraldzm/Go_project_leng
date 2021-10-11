@@ -7,9 +7,9 @@ import (
 func main() {
 	//Experimentos
 
-	n := []int{200} // 400, 600, 800, 1000
+	n := []int{200, 400, 600, 800, 1000}
 
-	for i := 0; i < 1; i++ {
+	for i := 0; i < 5; i++ {
 
 		ran := n[i]
 
@@ -49,6 +49,48 @@ func main() {
 		}
 
 		//experimento g
+		AbbDSW := funciones.Tree{Root: nil}
+		for _, val := range A {
+			AbbDSW.Funcion9(val)
+		}
+		AbbDSW = *funciones.Funcion11(&AbbDSW)
+
+		//experimento h
+		funciones.Funcion2(Distr)
+
+		//experimento i
+		arr := funciones.Funcion1(10000)
+		StatArrTS := make([]int, 10000)
+		StatArrTOS := make([]int, 10000)
+		StatArrTOQ := make([]int, 10000)
+		StatArrABB := make([]int, 10000)
+		StatArrABBDSW := make([]int, 10000)
+
+		for index, val := range arr {
+			_, StatArrTS[index] = funciones.Funcion6(val, &TS)
+			_, StatArrTOS[index] = funciones.Funcion7(val, TOS)
+			_, StatArrTOQ[index] = funciones.Funcion7(val, TOQ)
+			_, StatArrABB[index] = funciones.Funcion10(val, Abb)
+			_, StatArrABBDSW[index] = funciones.Funcion10(val, AbbDSW)
+		}
+
+		//experimento j
+		alturaAbb := funciones.HeightOf(Abb.Root)
+		alturaAbbDSW := funciones.HeightOf(AbbDSW.Root)
+
+		densidadAbb := alturaAbb / Abb.Size()
+		densidadAbbDSW := alturaAbb / AbbDSW.Size()
+
+		//Arreglos con total de comparaciones realizadas en las inserciones
+		//StatTS
+		//StatAbb
+
+		//Arreglos con total de comparaciones realizada en las busquedas
+		// StatArrTS
+		// StatArrTOS
+		// StatArrTOQ
+		// StatArrABB
+		// StatArrABBDSW
 
 	}
 

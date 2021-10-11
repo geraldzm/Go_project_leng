@@ -51,6 +51,29 @@ func HeightOf(root *Nodo) int {
 	return 1 + Max(HeightOf(root.LeftChild), HeightOf(root.RightChild))
 }
 
+func (t *Tree) Size() int {
+	return t.Root.Size()
+}
+
+// Retorna el tamano del arbol
+func (n *Nodo) Size() int {
+	if n == nil {
+		return 0
+	}
+
+	counter := 1
+
+	if n.RightChild != nil {
+		counter += n.RightChild.Size()
+	}
+
+	if n.LeftChild != nil {
+		counter += n.RightChild.Value
+	}
+
+	return counter
+}
+
 // func main() {
 // 	t := Tree{Root: nil}
 
