@@ -18,13 +18,3 @@ func Funcion3(key int, arry *[]int) int {
 
 	return comparations
 }
-
-// func main() {
-
-// 	r := []int{6, 4, 3, 7}
-
-// 	rs := Insert(15, &r)
-
-// 	fmt.Println(rs)
-// 	fmt.Println(r)
-// }

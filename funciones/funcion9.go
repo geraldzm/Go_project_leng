@@ -73,23 +73,3 @@ func (n *Nodo) Size() int {
 
 	return counter
 }
-
-// func main() {
-// 	t := Tree{Root: nil}
-
-// 	x := t.InsertInTree(4)
-// 	fmt.Println(*t.Root, x)
-
-// 	x = t.InsertInTree(2)
-
-// 	fmt.Println(*t.Root.LeftChild, x)
-
-// 	x = t.InsertInTree(2)
-
-// 	fmt.Println(*t.Root.LeftChild, x)
-
-// 	x = t.InsertInTree(5)
-
-// 	fmt.Println(*t.Root.RightChild, x)
-
-// }

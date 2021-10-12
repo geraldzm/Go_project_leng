@@ -16,12 +16,3 @@ func Funcion6(key int, arry *[]int) (bool, int) {
 
 	return false, comparations
 }
-
-// func main() {
-
-// 	r := []int{6, 4, 3, 7, 15, 9}
-
-// 	found, rs := SearchKey(1, &r)
-
-// 	fmt.Println(found, rs)
-// }
