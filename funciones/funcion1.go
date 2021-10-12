@@ -1,7 +1,6 @@
 package funciones
 
-func Funcion1(n int) []int {
-	var seed int = 19
+func Funcion1(n int, seed int) []int {
 	var periodo int = 2048
 	var a int = 21 //multiplicador
 	var b int = 25 //incremento

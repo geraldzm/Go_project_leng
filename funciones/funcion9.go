@@ -1,5 +1,10 @@
 package funciones
 
+import (
+	"fmt"
+	"io"
+)
+
 func InsertNode(val int, n *Nodo) int {
 
 	comparations := 0
