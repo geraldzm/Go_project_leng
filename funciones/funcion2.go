@@ -17,7 +17,7 @@ func Funcion2(array []int) error {
 	p := plot.New()
 
 	p.Title.Text = "Grafico de barras"
-	p.Y.Label.Text = "Numeros"
+	p.Y.Label.Text = ""
 
 	w := vg.Points(20)
 
@@ -33,7 +33,7 @@ func Funcion2(array []int) error {
 
 	p.Add(bars)
 
-	p.Legend.Add("Grupo")
+	p.Legend.Add("")
 	p.Legend.Top = true
 
 	if err := p.Save(5*vg.Inch, 3*vg.Inch, "barchart.png"); err != nil {
