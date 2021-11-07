@@ -2,10 +2,10 @@ package Sort
 
 type BubbleSort struct {
 	Array *[]int
-	ch chan Item
+	ch    chan Item
 }
 
-func (b *BubbleSort) Init()  {
+func (b *BubbleSort) Init() {
 	b.ch = make(chan Item)
 	go b.sort()
 }
@@ -15,15 +15,14 @@ func (b BubbleSort) GetArray() *[]int {
 }
 
 func (b BubbleSort) sort() {
-
 	ar := *b.Array
 	len := len(*b.Array)
 
-	for i:=0; i< len - 1; i++ {
-		for j:=0; j < len - i - 1; j++ {
+	for i := 0; i < len-1; i++ {
+		for j := 0; j < len-i-1; j++ {
 			if ar[j] > ar[j+1] {
 				ar[j], ar[j+1] = ar[j+1], ar[j]
-				b.ch <- Item { IndexFrom: j, IndexTo: j+1 }
+				b.ch <- Item{IndexFrom: j, IndexTo: j + 1}
 			}
 		}
 	}
@@ -32,6 +31,6 @@ func (b BubbleSort) sort() {
 }
 
 func (b BubbleSort) Sort() (Item, bool) {
-	itm, more := <- b.ch
+	itm, more := <-b.ch
 	return itm, more
 }
