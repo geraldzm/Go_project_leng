@@ -1,12 +1,11 @@
 package main
 
 import (
-	"proyecto/Sort"
-	"proyecto/graph"
-	"time"
-
 	"github.com/h8gi/canvas"
 	"golang.org/x/image/colornames"
+	"proyecto/Sort"
+	"proyecto/funciones"
+	"proyecto/graph"
 )
 
 var graphs [5]*graph.Graph
@@ -24,20 +23,26 @@ func draw(ctx *canvas.Context) {
 
 	for _, v := range graphs {
 		v.Draw(ctx)
-		time.Sleep(time.Millisecond * 100)
+		//time.Sleep(time.Millisecond * 50)
 	}
 }
 
 func main() {
+
 	// ---------- bubble sort
+
+	rsb := funciones.Funcion1(100, 17)
+
 	graphs[0] = &graph.Graph{
 		Rect: &graph.Rect{
 			X: 20, Y: 1, W: 400, H: 250,
 		},
 		Color:     &colornames.Green,
-		Algorithm: &Sort.BubbleSort{Array: &[]int{32, 4, 7, -5, 8, 3, 5, 23, 45, 2, 4, 38, 6, 40, 17}},
+		Algorithm: &Sort.BubbleSort{Array: &rsb },
 		Title:     "Bubble sort",
 	}
+
+	rsq := funciones.Funcion1(100, 17)
 
 	// ---------- quick sort
 	graphs[1] = &graph.Graph{
@@ -45,28 +50,36 @@ func main() {
 			X: 430, Y: 1, W: 400, H: 250,
 		},
 		Color:     &colornames.Greenyellow,
-		Algorithm: &Sort.BubbleSort{Array: &[]int{8, 3, 3, 5, 23, 13, 4, 14, 5, 8, 2, 4, 23, 6, 35, 17}},
+		Algorithm: &Sort.QuickSort{Array: &rsq},
 		Title:     "Quick sort",
 	}
 
-	// ----------
+	rsi := funciones.Funcion1(100, 17)
+
+	// ---------- insertion sort
 	graphs[2] = &graph.Graph{
 		Rect: &graph.Rect{
 			X: 20, Y: 280, W: 400, H: 250,
 		},
 		Color:     &colornames.Firebrick,
-		Algorithm: &Sort.BubbleSort{Array: &[]int{8, 3, 3, 5, 23, 9, 5, 9, 5, 18, 13, 4, 23, 6, 35, 17}},
-		Title:     "Quick sort",
+		Algorithm: &Sort.InsertionSort{Array: &rsi},
+		Title:     "Insertion sort",
 	}
+
+	rso := funciones.Funcion1(100, 17)
+
+
 	// ---------- other
 	graphs[3] = &graph.Graph{
 		Rect: &graph.Rect{
 			X: 430, Y: 280, W: 400, H: 250,
 		},
 		Color:     &colornames.Coral,
-		Algorithm: &Sort.BubbleSort{Array: &[]int{8, 3, 3, 5, 23, 13, 4, 7, 5, 8, 2, 4, 23, 6, 35, 17}},
+		Algorithm: &Sort.QuickSort{Array: &rso},
 		Title:     "Quick sort",
 	}
+
+	rsoo := funciones.Funcion1(100, 17)
 
 	// ---------- other
 	graphs[4] = &graph.Graph{
@@ -74,7 +87,7 @@ func main() {
 			X: 225, Y: 540, W: 400, H: 250,
 		},
 		Color:     &colornames.Blue,
-		Algorithm: &Sort.BubbleSort{Array: &[]int{8, 3, 3, 35, 17, 23, 9, 5, 32, 4, 8, 10, 5, 8, 31, 17}},
+		Algorithm: &Sort.QuickSort{Array: &rsoo},
 		Title:     "Quick sort",
 	}
 

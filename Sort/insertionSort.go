@@ -1,5 +1,7 @@
 package Sort
 
+import "fmt"
+
 type InsertionSort struct {
 	Array *[]int
 	ch    chan Item
@@ -20,7 +22,7 @@ func (in *InsertionSort) sort() {
 	j := 0
 
 	for i = 0; i < len(*in.Array); i++ {
-		temp_i := i
+		//temp_i := i
 		key = (*in.Array)[i]
 		j = i - 1
 
@@ -34,11 +36,13 @@ func (in *InsertionSort) sort() {
 			j = j - 1
 		}
 
-		in.ch <- Item{IndexFrom: temp_i, IndexTo: j + 1}
+	//	in.ch <- Item{IndexFrom: temp_i, IndexTo: j + 1}
 		(*in.Array)[j+1] = key
 	}
 
 	close(in.ch)
+
+	fmt.Println(*in.Array)
 }
 
 func (in *InsertionSort) Sort() (Item, bool) {
