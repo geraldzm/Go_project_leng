@@ -4,6 +4,7 @@ import (
 	"github.com/h8gi/canvas"
 	"golang.org/x/image/colornames"
 	"image/color"
+	"math"
 	"proyecto/Sort"
 )
 
@@ -12,6 +13,7 @@ type Graph struct {
 	pipes []*Rect
 	Rect  *Rect
 	Color color.Color
+	Title string
 }
 
 func findMax(a []int) float64 {
@@ -70,4 +72,17 @@ func (g Graph) Draw(ctx *canvas.Context) {
 		g.pipes[itm.IndexFrom].Color, g.pipes[itm.IndexTo].Color = colornames.Red, colornames.Red
 	}
 
+
+	ctx.Push()
+	x := g.Rect.X + g.Rect.W/2
+	y := g.Rect.Y + g.Rect.H - 10
+
+	ctx.ScaleAbout(-1, 1, x, y)
+	ctx.RotateAbout(math.Pi, x, y)
+
+	ctx.SetColor(colornames.White)
+	ctx.DrawStringAnchored(g.Title, x, y, 0.5, 0.5)
+	ctx.Stroke()
+	ctx.Pop()
+	
 }

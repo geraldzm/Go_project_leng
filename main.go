@@ -37,7 +37,8 @@ func main() {
 		 	X: 20, Y: 1, W: 400, H: 250,
 		},
 		Color: &colornames.Green,
-		Algorithm: &Sort.BubbleSort { Array: &[]int {32, 4, 7, 5, 8, 3, 5, 23, 45, 2, 4, 38, 6, 40, 17} },
+		Algorithm: &Sort.BubbleSort { Array: &[]int {32, 4, 7, -5, 8, 3, 5, 23, 45, 2, 4, 38, 6, 40, 17} },
+		Title: "Bubble sort",
 	}
 
 	// ---------- quick sort
@@ -47,6 +48,7 @@ func main() {
 		},
 		Color: &colornames.Greenyellow,
 		Algorithm: &Sort.BubbleSort { Array: &[]int {8,3, 3, 5, 23, 13, 4, 14, 5, 8, 2, 4, 23, 6, 35, 17} },
+		Title: "Quick sort",
 	}
 
 	// ----------
@@ -56,6 +58,7 @@ func main() {
 		},
 		Color: &colornames.Firebrick,
 		Algorithm: &Sort.BubbleSort { Array: &[]int {8,3, 3, 5, 23, 9, 5, 9, 5, 18, 13, 4, 23, 6, 35, 17} },
+		Title: "Quick sort",
 	}
 	// ---------- other
 	graphs[3] = &graph.Graph {
@@ -64,6 +67,7 @@ func main() {
 		},
 		Color: &colornames.Coral,
 		Algorithm: &Sort.BubbleSort { Array: &[]int {8,3, 3, 5, 23, 13, 4, 7, 5, 8, 2, 4, 23, 6, 35, 17} },
+		Title: "Quick sort",
 	}
 
 	// ---------- other
@@ -73,6 +77,7 @@ func main() {
 		},
 		Color: &colornames.Blue,
 		Algorithm: &Sort.BubbleSort { Array: &[]int {8,3, 3, 35, 17, 23, 9, 5, 32, 4, 8, 10, 5, 8, 31, 17} },
+		Title: "Quick sort",
 	}
 
 
