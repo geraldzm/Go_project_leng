@@ -10,12 +10,6 @@ import (
 
 var graphs [5]*graph.Graph
 
-func setUp(ctx *canvas.Context) {
-	ctx.SetColor(colornames.Black)
-	ctx.Clear()
-	ctx.SetColor(colornames.White)
-	ctx.SetLineWidth(2)
-}
 
 func draw(ctx *canvas.Context) {
 	ctx.SetColor(colornames.Black)
@@ -102,6 +96,5 @@ func main() {
 		Title:     "Graphs",
 	})
 
-	c.Setup(setUp)
 	c.Draw(draw)
 }

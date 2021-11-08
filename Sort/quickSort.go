@@ -22,6 +22,9 @@ func (q *QuickSort) Sort() (Item, bool) {
 // Funcion para ordenar un arreglo de enteros usando quick sort
 func (q *QuickSort) sort() {
 	q.QuicksortAux(0, len(*q.Array)-1)
+
+	q.ch <- Item{ Finished: true, TimeEnd: "10", TimeStart: "7", TotalTime: "3", TotalComp: 100}
+
 	close(q.ch)
 }
 

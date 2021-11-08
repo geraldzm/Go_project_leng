@@ -27,6 +27,8 @@ func (b BubbleSort) sort() {
 		}
 	}
 
+	b.ch <- Item{ Finished: false, TimeEnd: "20", TimeStart: "8", TotalTime: "12", TotalComp: 1000}
+
 	close(b.ch)
 }
 

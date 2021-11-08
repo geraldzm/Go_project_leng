@@ -14,6 +14,7 @@ type Graph struct {
 	Rect  *Rect
 	Color color.Color
 	Title string
+	finishInformation string
 }
 
 func findMax(a []int) float64 {
@@ -49,13 +50,27 @@ func (g *Graph) Init()  {
 
 }
 
-func (g Graph) Draw(ctx *canvas.Context) {
+func drawText(ctx *canvas.Context, txt *string, x float64, y float64) {
+
+	ctx.Push()
+
+	ctx.ScaleAbout(-1, 1, x, y)
+	ctx.RotateAbout(math.Pi, x, y)
+
+	ctx.SetColor(colornames.White)
+	ctx.DrawStringAnchored(*txt, x, y, 0.5, 0.5)
+	ctx.Stroke()
+	ctx.Pop()
+
+}
+
+func (g *Graph) Draw(ctx *canvas.Context) {
 
 	// marco
 	g.Rect.Draw(ctx)
 	ctx.Stroke()
 
-	//test
+	// get change
 	itm, more := g.Algorithm.Sort()
 
 	// pipes
@@ -67,22 +82,22 @@ func (g Graph) Draw(ctx *canvas.Context) {
 	}
 
 	if more {
-		g.pipes[itm.IndexFrom].X, g.pipes[itm.IndexTo].X = g.pipes[itm.IndexTo].X, g.pipes[itm.IndexFrom].X
-		g.pipes[itm.IndexFrom], g.pipes[itm.IndexTo] = g.pipes[itm.IndexTo], g.pipes[itm.IndexFrom]
-		g.pipes[itm.IndexFrom].Color, g.pipes[itm.IndexTo].Color = colornames.Red, colornames.Red
+		if !itm.Finished {
+			g.pipes[itm.IndexFrom].X, g.pipes[itm.IndexTo].X = g.pipes[itm.IndexTo].X, g.pipes[itm.IndexFrom].X
+			g.pipes[itm.IndexFrom], g.pipes[itm.IndexTo] = g.pipes[itm.IndexTo], g.pipes[itm.IndexFrom]
+			g.pipes[itm.IndexFrom].Color, g.pipes[itm.IndexTo].Color = colornames.Red, colornames.Red
+		} else {
+			g.finishInformation = "Start: " + itm.TimeStart + " End: " + itm.TimeEnd + " Total time: " + itm.TotalTime +" Comp: " + string(itm.TotalComp)
+		}
 	}
 
-
-	ctx.Push()
 	x := g.Rect.X + g.Rect.W/2
-	y := g.Rect.Y + g.Rect.H - 10
+	y := g.Rect.Y + g.Rect.H
 
-	ctx.ScaleAbout(-1, 1, x, y)
-	ctx.RotateAbout(math.Pi, x, y)
+	// Title
+	drawText(ctx, &g.Title, x , y - 10)
 
-	ctx.SetColor(colornames.White)
-	ctx.DrawStringAnchored(g.Title, x, y, 0.5, 0.5)
-	ctx.Stroke()
-	ctx.Pop()
-	
+	// Info if exists
+	drawText(ctx, &g.finishInformation, x, y - 30)
+
 }
