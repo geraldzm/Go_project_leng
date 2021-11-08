@@ -1,5 +1,10 @@
 package Sort
 
+import (
+	"strconv"
+	"time"
+)
+
 type QuickSort struct {
 	Array *[]int
 	ch    chan Item
@@ -21,9 +26,18 @@ func (q *QuickSort) Sort() (Item, bool) {
 
 // Funcion para ordenar un arreglo de enteros usando quick sort
 func (q *QuickSort) sort() {
-	q.QuicksortAux(0, len(*q.Array)-1)
 
-	q.ch <- Item{ Finished: true, TimeEnd: "10", TimeStart: "7", TotalTime: "3", TotalComp: 100}
+	t0 := time.Now().UnixNano() / int64(time.Millisecond)
+	q.QuicksortAux(0, len(*q.Array)-1)
+	t1 := time.Now().UnixNano() / int64(time.Millisecond)
+
+	q.ch <- Item {
+		Finished: true,
+		TimeEnd: strconv.FormatInt(t0 , 10),
+		TimeStart: strconv.FormatInt(t1, 10),
+		TotalTime: strconv.FormatInt(t1-t0, 10),
+		TotalComp: 1000,
+	}
 
 	close(q.ch)
 }

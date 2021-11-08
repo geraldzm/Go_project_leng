@@ -1,6 +1,7 @@
 package graph
 
 import (
+	"github.com/fogleman/gg"
 	"github.com/h8gi/canvas"
 	"golang.org/x/image/colornames"
 	"image/color"
@@ -58,7 +59,7 @@ func drawText(ctx *canvas.Context, txt *string, x float64, y float64) {
 	ctx.RotateAbout(math.Pi, x, y)
 
 	ctx.SetColor(colornames.White)
-	ctx.DrawStringAnchored(*txt, x, y, 0.5, 0.5)
+	ctx.DrawStringWrapped(*txt, x, y, 0.5, 0.5, 150, 1, gg.AlignCenter)
 	ctx.Stroke()
 	ctx.Pop()
 
@@ -98,6 +99,6 @@ func (g *Graph) Draw(ctx *canvas.Context) {
 	drawText(ctx, &g.Title, x , y - 10)
 
 	// Info if exists
-	drawText(ctx, &g.finishInformation, x, y - 30)
+	drawText(ctx, &g.finishInformation, x, y - 45)
 
 }
