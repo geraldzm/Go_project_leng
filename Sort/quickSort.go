@@ -28,15 +28,21 @@ func (q *QuickSort) Sort() (Item, bool) {
 func (q *QuickSort) sort() {
 
 	t0 := time.Now().UnixNano() / int64(time.Millisecond)
-	q.QuicksortAux(0, len(*q.Array)-1)
+	comparisons := 0
+	swaps := 0
+	iterations := 1
+
+	q.QuicksortAux(0, len(*q.Array)-1, &comparisons, &swaps, &iterations)
 	t1 := time.Now().UnixNano() / int64(time.Millisecond)
 
-	q.ch <- Item {
-		Finished: true,
-		TimeEnd: strconv.FormatInt(t0 , 10),
-		TimeStart: strconv.FormatInt(t1, 10),
-		TotalTime: strconv.FormatInt(t1-t0, 10),
-		TotalComp: 1000,
+	q.ch <- Item{
+		Finished:   true,
+		TimeEnd:    strconv.FormatInt(t0, 10),
+		TimeStart:  strconv.FormatInt(t1, 10),
+		TotalTime:  strconv.FormatInt(t1-t0, 10),
+		TotalComp:  comparisons,
+		TotalSwaps: swaps,
+		TotalIter:  iterations,
 	}
 
 	close(q.ch)
@@ -44,12 +50,13 @@ func (q *QuickSort) sort() {
 
 // Codigo tomado de: https://www.geeksforgeeks.org/quick-sort/
 // Funcion de ordenamiento usando quicksort
-func (q *QuickSort) QuicksortAux(low, high int) {
+func (q *QuickSort) QuicksortAux(low int, high int, comp *int, swaps *int, iter *int) {
+	*comp++
 	if low < high {
-		pi := q.Partition(low, high)
+		pi := q.Partition(low, high, comp, swaps, iter)
 
-		q.QuicksortAux(low, pi-1)
-		q.QuicksortAux(pi+1, high)
+		q.QuicksortAux(low, pi-1, comp, swaps, iter)
+		q.QuicksortAux(pi+1, high, comp, swaps, iter)
 	}
 }
 
@@ -59,22 +66,26 @@ func (q *QuickSort) QuicksortAux(low, high int) {
     array, and places all smaller (smaller than pivot)
    to left of pivot and all greater elements to right
    of pivot */
-func (q *QuickSort) Partition(low, high int) int {
+func (q *QuickSort) Partition(low int, high int, comp *int, swaps *int, iter *int) int {
 	pivot := (*q.Array)[high]
 
 	i := low - 1
 
+	*iter++
 	for j := low; j <= high-1; j++ {
+		*comp++
 		if (*q.Array)[j] < pivot {
 			i++
 
 			q.ch <- Item{IndexFrom: i, IndexTo: j}
 			Swap(&(*q.Array)[i], &(*q.Array)[j])
+			*swaps++
 		}
 	}
 
 	q.ch <- Item{IndexFrom: i + 1, IndexTo: high}
 	Swap(&(*q.Array)[i+1], &(*q.Array)[high])
+	*swaps++
 
 	return i + 1
 }

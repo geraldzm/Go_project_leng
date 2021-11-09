@@ -1,20 +1,22 @@
 package graph
 
 import (
-	"github.com/fogleman/gg"
-	"github.com/h8gi/canvas"
-	"golang.org/x/image/colornames"
 	"image/color"
 	"math"
 	"proyecto/Sort"
+	"strconv"
+
+	"github.com/fogleman/gg"
+	"github.com/h8gi/canvas"
+	"golang.org/x/image/colornames"
 )
 
 type Graph struct {
-	Algorithm Sort.ISortAlgorithm
-	pipes []*Rect
-	Rect  *Rect
-	Color color.Color
-	Title string
+	Algorithm         Sort.ISortAlgorithm
+	pipes             []*Rect
+	Rect              *Rect
+	Color             color.Color
+	Title             string
 	finishInformation string
 }
 
@@ -30,12 +32,12 @@ func findMax(a []int) float64 {
 	return float64(max)
 }
 
-func (g *Graph) Init()  {
+func (g *Graph) Init() {
 	g.Rect.Color = color.White
 	g.Algorithm.Init()
 
 	arr := g.Algorithm.GetArray()
-	pw := g.Rect.W / float64 (len(*arr)) // width of pipe
+	pw := g.Rect.W / float64(len(*arr)) // width of pipe
 	mx := findMax(*arr)
 
 	if mx == 0 {
@@ -45,7 +47,7 @@ func (g *Graph) Init()  {
 	for indx, val := range *arr {
 		indxF := float64(indx)
 		valF := float64(val)
-		g.pipes = append(g.pipes, &Rect { X: indxF*pw + g.Rect.X, Y: g.Rect.Y, W: pw, H: valF*g.Rect.H / mx } )
+		g.pipes = append(g.pipes, &Rect{X: indxF*pw + g.Rect.X, Y: g.Rect.Y, W: pw, H: valF * g.Rect.H / mx})
 		g.pipes[indx].Color = g.Color
 	}
 
@@ -88,7 +90,7 @@ func (g *Graph) Draw(ctx *canvas.Context) {
 			g.pipes[itm.IndexFrom], g.pipes[itm.IndexTo] = g.pipes[itm.IndexTo], g.pipes[itm.IndexFrom]
 			g.pipes[itm.IndexFrom].Color, g.pipes[itm.IndexTo].Color = colornames.Red, colornames.Red
 		} else {
-			g.finishInformation = "Start: " + itm.TimeStart + " End: " + itm.TimeEnd + " Total time: " + itm.TotalTime +" Comp: " + string(itm.TotalComp)
+			g.finishInformation = "Start: " + itm.TimeStart + " End: " + itm.TimeEnd + " Total time: " + itm.TotalTime + " Comp: " + strconv.Itoa(itm.TotalComp) + " Swaps: " + strconv.Itoa(itm.TotalSwaps) + " Iter: " + strconv.Itoa(itm.TotalIter)
 		}
 	}
 
@@ -96,9 +98,9 @@ func (g *Graph) Draw(ctx *canvas.Context) {
 	y := g.Rect.Y + g.Rect.H
 
 	// Title
-	drawText(ctx, &g.Title, x , y - 10)
+	drawText(ctx, &g.Title, x, y-10)
 
 	// Info if exists
-	drawText(ctx, &g.finishInformation, x, y - 45)
+	drawText(ctx, &g.finishInformation, x, y-45)
 
 }

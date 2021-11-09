@@ -1,15 +1,22 @@
 package main
 
 import (
-	"github.com/h8gi/canvas"
-	"golang.org/x/image/colornames"
 	"proyecto/Sort"
 	"proyecto/funciones"
 	"proyecto/graph"
+
+	"github.com/h8gi/canvas"
+	"golang.org/x/image/colornames"
 )
 
 var graphs [5]*graph.Graph
 
+func setUp(ctx *canvas.Context) {
+	ctx.SetColor(colornames.Black)
+	ctx.Clear()
+	ctx.SetColor(colornames.White)
+	ctx.SetLineWidth(2)
+}
 
 func draw(ctx *canvas.Context) {
 	ctx.SetColor(colornames.Black)
@@ -24,19 +31,22 @@ func draw(ctx *canvas.Context) {
 func main() {
 
 	// ---------- bubble sort
+	arreglo_base := funciones.Funcion1(100, 17)
 
-	rsb := funciones.Funcion1(100, 17)
+	rsb := make([]int, 100)
+	copy(rsb, arreglo_base)
 
 	graphs[0] = &graph.Graph{
 		Rect: &graph.Rect{
 			X: 20, Y: 1, W: 400, H: 250,
 		},
 		Color:     &colornames.Green,
-		Algorithm: &Sort.BubbleSort{Array: &rsb },
+		Algorithm: &Sort.BubbleSort{Array: &rsb},
 		Title:     "Bubble sort",
 	}
 
-	rsq := funciones.Funcion1(100, 17)
+	rsq := make([]int, 100)
+	copy(rsq, arreglo_base)
 
 	// ---------- quick sort
 	graphs[1] = &graph.Graph{
@@ -45,10 +55,11 @@ func main() {
 		},
 		Color:     &colornames.Greenyellow,
 		Algorithm: &Sort.QuickSort{Array: &rsq},
-		Title:     "Quick sort",
+		Title:     "Quick Sort",
 	}
 
-	rsi := funciones.Funcion1(100, 17)
+	rsi := make([]int, 100)
+	copy(rsi, arreglo_base)
 
 	// ---------- insertion sort
 	graphs[2] = &graph.Graph{
@@ -57,32 +68,33 @@ func main() {
 		},
 		Color:     &colornames.Firebrick,
 		Algorithm: &Sort.InsertionSort{Array: &rsi},
-		Title:     "Insertion sort",
+		Title:     "Insertion Sort",
 	}
 
-	rso := funciones.Funcion1(100, 17)
+	rso := make([]int, 100)
+	copy(rso, arreglo_base)
 
-
-	// ---------- other
+	// ---------- selection sort
 	graphs[3] = &graph.Graph{
 		Rect: &graph.Rect{
 			X: 430, Y: 280, W: 400, H: 250,
 		},
 		Color:     &colornames.Coral,
-		Algorithm: &Sort.QuickSort{Array: &rso},
-		Title:     "Quick sort",
+		Algorithm: &Sort.SelectionSort{Array: &rso},
+		Title:     "Selection Sort",
 	}
 
-	rsoo := funciones.Funcion1(100, 17)
+	rsoo := make([]int, 100)
+	copy(rsoo, arreglo_base)
 
-	// ---------- other
+	// ---------- heap sort
 	graphs[4] = &graph.Graph{
 		Rect: &graph.Rect{
 			X: 225, Y: 540, W: 400, H: 250,
 		},
 		Color:     &colornames.Blue,
-		Algorithm: &Sort.QuickSort{Array: &rsoo},
-		Title:     "Quick sort",
+		Algorithm: &Sort.HeapSort{Array: &rsoo},
+		Title:     "Heap Sort",
 	}
 
 	for _, v := range graphs {
@@ -96,5 +108,6 @@ func main() {
 		Title:     "Graphs",
 	})
 
+	c.Setup(setUp)
 	c.Draw(draw)
 }

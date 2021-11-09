@@ -37,11 +37,11 @@ func (b BubbleSort) sort() {
 
 	t1 := time.Now().UnixNano() / int64(time.Millisecond)
 
-	b.ch <- Item {
-		Finished: true,
-		TimeEnd: strconv.FormatInt(t0 / int64(time.Second), 10),
-		TimeStart: strconv.FormatInt(t1 / int64(time.Second), 10),
-		TotalTime: strconv.FormatInt((t1-t0)  / int64(time.Second), 10),
+	b.ch <- Item{
+		Finished:  true,
+		TimeEnd:   strconv.FormatInt(t0/int64(time.Second), 10),
+		TimeStart: strconv.FormatInt(t1/int64(time.Second), 10),
+		TotalTime: strconv.FormatInt((t1-t0)/int64(time.Second), 10),
 		TotalComp: 1000,
 	}
 

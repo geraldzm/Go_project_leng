@@ -19,3 +19,5 @@ barchart.png
 *.zip
 
 .idea/
+
+.DS_Store
