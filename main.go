@@ -41,21 +41,30 @@ func main() {
 
 	fmt.Print("Enter a seed: ")
 	str1, _ := reader.ReadString('\n')
+	fmt.Print("Enter the N value: ")
+	str2, _ := reader.ReadString('\n')
 
 	// remove newline
 	str1 = strings.Replace(str1, "\n", "", -1)
+	str2 = strings.Replace(str2, "\n", "", -1)
 
 	// convert string variable to int variable
 	seed, e := strconv.Atoi(str1)
+	n, e2 := strconv.Atoi(str2)
+
 	if e != nil {
 		fmt.Println("conversion error:", str1)
 		return
 	}
+	if e2 != nil {
+		fmt.Println("conversion error:", str2)
+		return
+	}
 
-	arreglo_base := funciones.Funcion1(100, seed)
+	arreglo_base := funciones.Funcion1(n, seed)
 
 	// ---------- bubble sort
-	rsb := make([]int, 100)
+	rsb := make([]int, n)
 	copy(rsb, arreglo_base)
 
 	graphs[0] = &graph.Graph{
@@ -67,7 +76,7 @@ func main() {
 		Title:     "Bubble sort",
 	}
 
-	rsq := make([]int, 100)
+	rsq := make([]int, n)
 	copy(rsq, arreglo_base)
 
 	// ---------- quick sort
@@ -80,7 +89,7 @@ func main() {
 		Title:     "Quick Sort",
 	}
 
-	rsi := make([]int, 100)
+	rsi := make([]int, n)
 	copy(rsi, arreglo_base)
 
 	// ---------- insertion sort
@@ -93,7 +102,7 @@ func main() {
 		Title:     "Insertion Sort",
 	}
 
-	rso := make([]int, 100)
+	rso := make([]int, n)
 	copy(rso, arreglo_base)
 
 	// ---------- selection sort
@@ -106,7 +115,7 @@ func main() {
 		Title:     "Selection Sort",
 	}
 
-	rsoo := make([]int, 100)
+	rsoo := make([]int, n)
 	copy(rsoo, arreglo_base)
 
 	// ---------- heap sort
