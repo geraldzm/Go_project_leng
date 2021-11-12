@@ -12,7 +12,7 @@ type HeapSort struct {
 
 func (h *HeapSort) Init() {
 	h.ch = make(chan Item)
-	go h.sort()
+	go h.sort() //GORRUTINA
 }
 
 func (h *HeapSort) GetArray() *[]int {

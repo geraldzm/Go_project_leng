@@ -12,7 +12,7 @@ type BubbleSort struct {
 
 func (b *BubbleSort) Init() {
 	b.ch = make(chan Item)
-	go b.sort()
+	go b.sort() //GORRUTINA
 }
 
 func (b BubbleSort) GetArray() *[]int {

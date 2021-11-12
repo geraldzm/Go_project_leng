@@ -12,7 +12,7 @@ type InsertionSort struct {
 
 func (in *InsertionSort) Init() {
 	in.ch = make(chan Item)
-	go in.sort()
+	go in.sort() //GORRUTINA
 }
 
 func (in *InsertionSort) GetArray() *[]int {

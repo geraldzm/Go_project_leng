@@ -12,7 +12,7 @@ type SelectionSort struct {
 
 func (q *SelectionSort) Init() {
 	q.ch = make(chan Item)
-	go q.sort()
+	go q.sort() //GORRUTINA
 }
 
 func (q *SelectionSort) GetArray() *[]int {

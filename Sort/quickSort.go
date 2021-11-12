@@ -12,7 +12,7 @@ type QuickSort struct {
 
 func (q *QuickSort) Init() {
 	q.ch = make(chan Item)
-	go q.sort()
+	go q.sort() //GORRUTINA
 }
 
 func (q *QuickSort) GetArray() *[]int {
