@@ -30,6 +30,8 @@ func draw(ctx *canvas.Context) {
 
 func main() {
 
+	//pedir entrada de datos
+
 	// ---------- bubble sort
 	arreglo_base := funciones.Funcion1(100, 17)
 
@@ -77,7 +79,7 @@ func main() {
 	// ---------- selection sort
 	graphs[3] = &graph.Graph{
 		Rect: &graph.Rect{
-			X: 430, Y: 280, W: 400, H: 250,
+			X: 225, Y: 540, W: 400, H: 250,
 		},
 		Color:     &colornames.Coral,
 		Algorithm: &Sort.SelectionSort{Array: &rso},
@@ -90,7 +92,7 @@ func main() {
 	// ---------- heap sort
 	graphs[4] = &graph.Graph{
 		Rect: &graph.Rect{
-			X: 225, Y: 540, W: 400, H: 250,
+			X: 430, Y: 280, W: 400, H: 250,
 		},
 		Color:     &colornames.Blue,
 		Algorithm: &Sort.HeapSort{Array: &rsoo},

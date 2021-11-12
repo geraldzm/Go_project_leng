@@ -40,8 +40,8 @@ func (in *InsertionSort) sort() {
 		j = i - 1
 
 		for {
+			comparisons++
 			if j < 0 || (*in.Array)[j] <= key {
-				comparisons++
 				break
 			}
 
@@ -49,6 +49,7 @@ func (in *InsertionSort) sort() {
 			in.ch <- Item{IndexFrom: j, IndexTo: j + 1}
 			(*in.Array)[j+1] = (*in.Array)[j]
 			j = j - 1
+			iterations++
 		}
 
 		(*in.Array)[j+1] = key
