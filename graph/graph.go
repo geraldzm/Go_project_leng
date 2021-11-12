@@ -3,8 +3,10 @@ package graph
 import (
 	"image/color"
 	"math"
+	"math/rand"
 	"proyecto/Sort"
 	"strconv"
+	"time"
 
 	"github.com/fogleman/gg"
 	"github.com/h8gi/canvas"
@@ -18,6 +20,7 @@ type Graph struct {
 	Color             color.Color
 	Title             string
 	finishInformation string
+	isFinished bool
 }
 
 func findMax(a []int) float64 {
@@ -35,6 +38,7 @@ func findMax(a []int) float64 {
 func (g *Graph) Init() {
 	g.Rect.Color = color.White
 	g.Algorithm.Init()
+	rand.Seed(time.Now().UnixNano())
 
 	arr := g.Algorithm.GetArray()
 	pw := g.Rect.W / float64(len(*arr)) // width of pipe
@@ -81,7 +85,11 @@ func (g *Graph) Draw(ctx *canvas.Context) {
 		r.Draw(ctx)
 		ctx.Fill()
 
-		r.Color = g.Color
+		if g.isFinished {
+			r.Color = color.RGBA{R: uint8(rand.Intn(255)), G: uint8(rand.Intn(255)), B: uint8(rand.Intn(255)), A: 255}
+		} else {
+			r.Color = g.Color
+		}
 	}
 
 	if more {
@@ -90,6 +98,7 @@ func (g *Graph) Draw(ctx *canvas.Context) {
 			g.pipes[itm.IndexFrom], g.pipes[itm.IndexTo] = g.pipes[itm.IndexTo], g.pipes[itm.IndexFrom]
 			g.pipes[itm.IndexFrom].Color, g.pipes[itm.IndexTo].Color = colornames.Red, colornames.Red
 		} else {
+			g.isFinished = true
 			g.finishInformation = "Start: " + itm.TimeStart + " End: " + itm.TimeEnd + " Total time: " + itm.TotalTime + " Comp: " + strconv.Itoa(itm.TotalComp) + " Swaps: " + strconv.Itoa(itm.TotalSwaps) + " Iter: " + strconv.Itoa(itm.TotalIter)
 		}
 	}
@@ -101,6 +110,8 @@ func (g *Graph) Draw(ctx *canvas.Context) {
 	drawText(ctx, &g.Title, x, y-10)
 
 	// Info if exists
-	drawText(ctx, &g.finishInformation, x, y-50)
+	if g.isFinished {
+		drawText(ctx, &g.finishInformation, x, y-50)
+	}
 
 }
