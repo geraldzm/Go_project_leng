@@ -12,7 +12,7 @@ type QuickSort struct {
 
 func (q *QuickSort) Init() {
 	q.ch = make(chan Item)
-	go q.sort() //GORRUTINA
+	go q.sort() //GORRUTINA EJECUTADA
 }
 
 func (q *QuickSort) GetArray() *[]int {
@@ -27,15 +27,16 @@ func (q *QuickSort) Sort() (Item, bool) {
 // Funcion para ordenar un arreglo de enteros usando quick sort
 func (q *QuickSort) sort() {
 
-	t0 := time.Now().UnixNano() / int64(time.Millisecond)
-	comparisons := 0
+	t0 := time.Now().UnixNano() / int64(time.Millisecond) //MUESTRA DE TIEMPO INICIAL
+
+	comparisons := 0 //VARIABLES PARA CONTAR OPERACIONES ELEMENTALES
 	swaps := 0
 	iterations := 1
 
 	q.QuicksortAux(0, len(*q.Array)-1, &comparisons, &swaps, &iterations)
-	t1 := time.Now().UnixNano() / int64(time.Millisecond)
+	t1 := time.Now().UnixNano() / int64(time.Millisecond) //MUESTRA DE TIEMPO FINAL
 
-	q.ch <- Item{
+	q.ch <- Item{ //COMUNICACIÓN FINAL CON LA GRAFICADORA POR MEDIO DEL CANAL
 		Finished:   true,
 		TimeEnd:    strconv.FormatInt(t0, 10),
 		TimeStart:  strconv.FormatInt(t1, 10),
@@ -51,7 +52,7 @@ func (q *QuickSort) sort() {
 // Codigo tomado de: https://www.geeksforgeeks.org/quick-sort/
 // Funcion de ordenamiento usando quicksort
 func (q *QuickSort) QuicksortAux(low int, high int, comp *int, swaps *int, iter *int) {
-	*comp++
+	*comp++ //SE INCREMENTA CONTEO DE COMPARACIONES ENTRE VALORES
 	if low < high {
 		pi := q.Partition(low, high, comp, swaps, iter)
 
@@ -71,21 +72,23 @@ func (q *QuickSort) Partition(low int, high int, comp *int, swaps *int, iter *in
 
 	i := low - 1
 
-	*iter++
+	*iter++ //SE INCREMENTA CONTEO DE EVALUACIONES DE UN CICLO REPETITIVO
 	for j := low; j <= high-1; j++ {
-		*comp++
+		*comp++ //SE INCREMENTA CONTEO DE COMPARACIONES ENTRE VALORES
 		if (*q.Array)[j] < pivot {
 			i++
 
 			q.ch <- Item{IndexFrom: i, IndexTo: j}
 			Swap(&(*q.Array)[i], &(*q.Array)[j])
-			*swaps++
+			*swaps++ //SE INCREMENTA CONTEO DE INTERCAMBIOS DE VALORES ENTRE DOS
 		}
+		*iter++ //SE INCREMENTA CONTEO DE EVALUACIONES DE UN CICLO REPETITIVO
 	}
 
-	q.ch <- Item{IndexFrom: i + 1, IndexTo: high}
+	q.ch <- Item{IndexFrom: i + 1, IndexTo: high} //COMUNICACIÓN CON LA GRAFICADORA POR MEDIO DEL CANAL
+
 	Swap(&(*q.Array)[i+1], &(*q.Array)[high])
-	*swaps++
+	*swaps++ //SE INCREMENTA CONTEO DE INTERCAMBIOS DE VALORES ENTRE DOS
 
 	return i + 1
 }
