@@ -48,7 +48,6 @@ func (s *SelectionSort) sort() {
 			}
 			iterations++
 		}
-		iterations++
 		arr[i], arr[min_index] = arr[min_index], arr[i]
 		s.ch <- Item{IndexFrom: min_index, IndexTo: i}
 		swaps++
