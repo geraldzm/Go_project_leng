@@ -85,6 +85,7 @@ func (h *HeapSort) leaf(index int, size int, comp *int) bool {
 }
 
 func (h *HeapSort) downHeapify(current int, size int, comp *int, swaps *int, iter *int) {
+	*iter++
 	if h.leaf(current, size, comp) {
 		return
 	}

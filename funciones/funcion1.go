@@ -9,7 +9,7 @@ func Funcion1(n int, seed int) []int {
 
 	for i := 0; i < n; i++ {
 		seed = (a*seed + b) % periodo
-		arr[i] = seed % 53
+		arr[i] = seed % 30
 	}
 	return arr
 }
