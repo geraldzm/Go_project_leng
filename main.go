@@ -5,6 +5,12 @@ import (
 	"proyecto/funciones"
 	"proyecto/graph"
 
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+
 	"github.com/h8gi/canvas"
 	"golang.org/x/image/colornames"
 )
@@ -31,10 +37,24 @@ func draw(ctx *canvas.Context) {
 func main() {
 
 	//pedir entrada de datos
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Print("Enter a seed: ")
+	str1, _ := reader.ReadString('\n')
+
+	// remove newline
+	str1 = strings.Replace(str1, "\n", "", -1)
+
+	// convert string variable to int variable
+	seed, e := strconv.Atoi(str1)
+	if e != nil {
+		fmt.Println("conversion error:", str1)
+		return
+	}
+
+	arreglo_base := funciones.Funcion1(100, seed)
 
 	// ---------- bubble sort
-	arreglo_base := funciones.Funcion1(100, 17)
-
 	rsb := make([]int, 100)
 	copy(rsb, arreglo_base)
 

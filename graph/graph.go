@@ -101,6 +101,6 @@ func (g *Graph) Draw(ctx *canvas.Context) {
 	drawText(ctx, &g.Title, x, y-10)
 
 	// Info if exists
-	drawText(ctx, &g.finishInformation, x, y-45)
+	drawText(ctx, &g.finishInformation, x, y-50)
 
 }
