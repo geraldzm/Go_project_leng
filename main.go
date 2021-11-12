@@ -36,7 +36,7 @@ func draw(ctx *canvas.Context) {
 
 func main() {
 
-	//pedir entrada de datos
+	// La semilla deberá ser un número primo entre 11 y 101.
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Print("Enter a seed: ")
